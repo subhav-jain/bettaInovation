@@ -1,6 +1,5 @@
 package com.ith.betta.web.models;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,8 +19,6 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private Set<Authorities> authorities = new HashSet<>();
-
-    private Set<Role> roles;
 
     public String getUsername() {
         return username;
@@ -51,10 +48,5 @@ public class User {
         return authorities;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "authority", joinColumns = {@JoinColumn(name = "username")}, inverseJoinColumns = {@JoinColumn(name = "username")})
-    private void setRole() {
-        this.roles = roles;
-    }
 
 }
